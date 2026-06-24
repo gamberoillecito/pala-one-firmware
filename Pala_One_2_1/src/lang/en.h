@@ -16,11 +16,26 @@
 //  About screen (src/ui/screens/about_screen.cpp)
 // ----------------------------------------------------------------------------
 #define D_ABOUT_HEADER              "Device"
-#define D_ABOUT_FIRMWARE_PREFIX     "Firmware "
-#define D_ABOUT_GESTURE_NEXT        "1x next / down"
-#define D_ABOUT_GESTURE_OPEN        "2x open / select"
-#define D_ABOUT_GESTURE_HOME        "3x home"
-#define D_ABOUT_GESTURE_BOOKMARK    "Hold bookmark"
+#define D_ABOUT_FIRMWARE_PREFIX     "Firmware"
+#define D_ABOUT_GESTURE_CLICK       "click"
+#define D_ABOUT_GESTURE_CLICK_2     "click x 2"
+#define D_ABOUT_GESTURE_CLICK_3     "click x 3"
+#define D_ABOUT_GESTURE_CLICK_HOLD  "click + hold"
+#define D_ABOUT_GESTURE_HOLD        "hold"
+#define D_ABOUT_GESTURE_LONG_HOLD   "long hold"
+#define D_ABOUT_GESTURE_SEPARATOR   ": "
+
+// ----------------------------------------------------------------------------
+// Action names  (src/ui/reader_actions.cpp)
+// ----------------------------------------------------------------------------
+#define D_ACTION_NONE_LABEL     "None"
+#define D_ACTION_NEXT_LABEL     "Next"
+#define D_ACTION_OPEN_LABEL     "Open/Select"
+#define D_ACTION_BOOKMARK_LABEL "Bookmark"
+#define D_ACTION_HOME_LABEL     "Home"
+#define D_ACTION_LOCK_LABEL     "Lock"
+#define D_ACTION_MENU_LABEL     "Menu"
+#define D_ACTION_ROTATE_LABEL   "Flip screen"
 
 // ----------------------------------------------------------------------------
 //  Library screen — section title + system menu entries
@@ -335,6 +350,7 @@
 #define D_WEB_BUTTONS_ACTION_BOOKMARK "Bookmark page"
 #define D_WEB_BUTTONS_ACTION_LOCK     "Lock device"
 #define D_WEB_BUTTONS_ACTION_MENU     "Open menu"
+#define D_WEB_BUTTONS_ACTION_ROTATE     "Flip screen orientation"
 
 // Device personalization card (src/web/settings.cpp).
 #define D_WEB_DEVICE_HEADING        "Device"
@@ -342,6 +358,7 @@
 #define D_WEB_HEADER_TITLE_LABEL    "Header title"
 #define D_WEB_HEADER_TITLE_HINT     "Shown at the top of the library screen. Leave empty for no title."
 #define D_WEB_HEADER_TITLE_RESET    "Reset to default"
+#define D_WEB_FLIP_SCREEN           "Flip screen orientation"
 
 // ----------------------------------------------------------------------------
 //  Upload (book + sleep image) routes (src/web/upload.cpp)
