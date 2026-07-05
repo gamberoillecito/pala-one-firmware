@@ -16,6 +16,7 @@
 #include "src/ui/pala_one_sleep_black_icon_v4.h"
 #include "src/ui/screen.h"
 #include "src/ui/screensavers.h"   // multi-slot rotation
+#include "src/ui/screen_settings.h"
 
 namespace Sleep {
 
@@ -74,23 +75,23 @@ static void drawLockBadge() {
 
   // Pill: black fill, white 1px border bleed for hairline contrast against
   // dark uploaded images. Order matters — inner fill draws last.
-  gfx.fillRect(boxX - 1, boxY - 1, boxW + 2, boxH + 2, 0);
-  gfx.fillRect(boxX, boxY, boxW, boxH, 1);
+  gfx.fillRect(boxX - 1, boxY - 1, boxW + 2, boxH + 2, bgCol());
+  gfx.fillRect(boxX, boxY, boxW, boxH, fgCol());
 
   // Padlock glyph, white-on-black.
   const int iconX = boxX + padX;
   const int iconY = boxY + padY;
   const int bodyY = iconY + 4;
   // Body: solid white 7×5 rectangle.
-  gfx.fillRect(iconX, bodyY, iconW, 5, 0);
+  gfx.fillRect(iconX, bodyY, iconW, 5, bgCol());
   // Keyhole: one black pixel at the body centre.
-  gfx.drawPixel(iconX + 3, bodyY + 2, 1);
+  gfx.drawPixel(iconX + 3, bodyY + 2, fgCol());
   // Shackle: U-shape — left/right verticals (4 px tall) + 3-px top connector.
-  gfx.drawFastVLine(iconX + 1, iconY, 4, 0);
-  gfx.drawFastVLine(iconX + 5, iconY, 4, 0);
-  gfx.drawPixel(iconX + 2, iconY, 0);
-  gfx.drawPixel(iconX + 3, iconY, 0);
-  gfx.drawPixel(iconX + 4, iconY, 0);
+  gfx.drawFastVLine(iconX + 1, iconY, 4, bgCol());
+  gfx.drawFastVLine(iconX + 5, iconY, 4, bgCol());
+  gfx.drawPixel(iconX + 2, iconY, bgCol());
+  gfx.drawPixel(iconX + 3, iconY, bgCol());
+  gfx.drawPixel(iconX + 4, iconY, bgCol());
 }
 
 // Render the screensaver onto the e-ink before powering down. Falls back to
@@ -100,8 +101,8 @@ static void drawSleepScreen() {
   beginPageCanvas();
 
   if (!Screensavers::drawNext()) {
-    gfx.fillScreen(1);
-    gfx.drawXBitmap(0, 0, pala_one_sleep_black_icon_v4_bits, SCREEN_W, SCREEN_H, 0);
+    gfx.fillScreen(fgCol());
+    gfx.drawXBitmap(0, 0, pala_one_sleep_black_icon_v4_bits, SCREEN_W, SCREEN_H, bgCol());
   }
   if (Lock::isLocked()) drawLockBadge();
   display.update();

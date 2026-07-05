@@ -7,6 +7,7 @@
 #include "src/ui/font.h"
 #include "src/ui/screens/library_screen.h"
 #include "src/ui/widgets.h"
+#include "src/ui/screen_settings.h"
 
 void StatisticsScreen::onEnter() {
   draw();
@@ -64,8 +65,8 @@ void StatisticsScreen::draw() {
     int bit = (CELLS - 1) - i;
     bool logged = (s.bitmap >> bit) & 1u;
     int x = x0 + i * cellW;
-    if (logged) gfx.fillRect(x, yTop, cellW - 1, cellH, 1);
-    else        gfx.drawRect(x, yTop, cellW - 1, cellH, 1);
+    if (logged) gfx.fillRect(x, yTop, cellW - 1, cellH, fgCol());
+    else        gfx.drawRect(x, yTop, cellW - 1, cellH, fgCol());
   }
 
   display.update();

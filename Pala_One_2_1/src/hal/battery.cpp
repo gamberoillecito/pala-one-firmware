@@ -2,7 +2,7 @@
 
 #include "src/hal/display.h" // u8g2 + gfx for the battery icon
 #include "src/ui/font.h"     // role-based font switch (UiSmall for the % text)
-
+#include "src/ui/screen_settings.h"
 #if HAS_BATTERY
 
 // Cached battery reading. The type lives here (file-private) because nothing
@@ -200,8 +200,8 @@ bool batteryChargingChanged()
 // Draws the outline of a battery with top-left corner at (x, y), width `w` and height `h`
 void drawBatteryOutline(int x, int y, int w, int h)
 {
-  gfx.drawRect(x, y, w, h, 1);             // main body
-  gfx.fillRect(x + w, y + 2, 2, h - 4, 1); // positive terminal on the right
+  gfx.drawRect(x, y, w, h, fgCol());             // main body
+  gfx.fillRect(x + w, y + 2, 2, h - 4, fgCol()); // positive terminal on the right
 }
 
 // Draws a solid bar indicating `perc` percentage of the battery charge. 0<= perc <= 100.
@@ -215,21 +215,21 @@ void drawBatteryCharge(int battX, int battY, int battW, int battH, int perc)
   }
 
   int fillW = perc * (battW - 2) / 100;
-  gfx.fillRect(battX + 1, battY + 1, fillW, battH - 2, 1);
+  gfx.fillRect(battX + 1, battY + 1, fillW, battH - 2, fgCol());
 }
 
 // Draws an exclamation mark leaving `spacing` pixels between it and the LEFT of the battery.
 void drawExclamation(int battX, int battY, int battH, int spacing)
 {
   int exMarkX1 = battX - spacing - 2;
-  gfx.fillRect(exMarkX1, battY, 2, battH - 4, 1);     // "pipe" part of the exclamation mark
-  gfx.fillRect(exMarkX1, battY + battH - 2, 2, 2, 1); // "dot"
+  gfx.fillRect(exMarkX1, battY, 2, battH - 4, fgCol());     // "pipe" part of the exclamation mark
+  gfx.fillRect(exMarkX1, battY + battH - 2, 2, 2, fgCol()); // "dot"
 }
 
 void drawChargingFill(int battX, int battY, int battH, int battW)
 {
-  gfx.fillTriangle(battX, battY, battX, battY + battH - 1, battX + battH, battY, 1);                                             // left triangle
-  gfx.fillTriangle(battX + battW - 1, battY, battX + battW - 1, battY + battH - 1, battX + battW - battH, battY + battH - 1, 1); // right triangle
+  gfx.fillTriangle(battX, battY, battX, battY + battH - 1, battX + battH, battY, fgCol());                                             // left triangle
+  gfx.fillTriangle(battX + battW - 1, battY, battX + battW - 1, battY + battH - 1, battX + battW - battH, battY + battH - 1, fgCol()); // right triangle
 }
 
 // Draws a bolt symbol leaving `spacing` pixels between it and the LEFT of the battery.
@@ -254,9 +254,9 @@ void drawBolt(int battX, int battY, int battH, int spacing)
 
   for (int i = 0; i < thickness; i++)
   {
-    gfx.drawLine(a_x - i, a_y, b_x - i, b_y, 1);
-    gfx.drawLine(b_x - i, b_y, c_x - i, c_y, 1);
-    gfx.drawLine(c_x - i, c_y, d_x - i, d_y, 1);
+    gfx.drawLine(a_x - i, a_y, b_x - i, b_y, fgCol());
+    gfx.drawLine(b_x - i, b_y, c_x - i, c_y, fgCol());
+    gfx.drawLine(c_x - i, c_y, d_x - i, d_y, fgCol());
   }
 }
 

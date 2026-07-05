@@ -9,5 +9,7 @@ namespace ScreenSettings
     bool isScreenFlipped();
     void setScreenRotation(bool);
 }
+int fgCol();
+int bgCol();
 
 #endif

@@ -25,3 +25,11 @@ namespace ScreenSettings {
         prefs.putBool(kKeyScreenFlipped, s_screenFlipped);
     }
 }
+
+int fgCol() {
+    return 0;
+}
+
+int bgCol() {
+    return 1;
+}

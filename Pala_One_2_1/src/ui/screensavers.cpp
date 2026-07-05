@@ -5,6 +5,7 @@
 #include "src/config.h"
 #include "src/hal/display.h"   // gfx
 #include "src/state.h"         // FS, prefs
+#include "src/ui/screen_settings.h"
 
 namespace Screensavers {
 
@@ -130,8 +131,8 @@ bool drawNext() {
       static uint8_t sleepBuf[SCREENSAVER_BYTES];
       sf.read(sleepBuf, SCREENSAVER_BYTES);
       sf.close();
-      gfx.fillScreen(1);
-      gfx.drawXBitmap(0, 0, sleepBuf, SCREEN_W, SCREEN_H, 0);
+      gfx.fillScreen(fgCol());
+      gfx.drawXBitmap(0, 0, sleepBuf, SCREEN_W, SCREEN_H, bgCol());
       return true;
     }
     if (sf) sf.close();
@@ -171,8 +172,8 @@ bool drawNext() {
   s_lastShown = pick;
   prefs.putInt(kKeyLastShown, pick);
 
-  gfx.fillScreen(1);
-  gfx.drawXBitmap(0, 0, buf, SCREEN_W, SCREEN_H, 0);
+  gfx.fillScreen(fgCol());
+  gfx.drawXBitmap(0, 0, buf, SCREEN_W, SCREEN_H, bgCol());
   return true;
 }
 

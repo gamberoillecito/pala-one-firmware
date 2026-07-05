@@ -14,6 +14,7 @@
 #include "src/ui/text.h"
 #include "src/ui/toast.h"                   // Toast::isActive / Toast::draw
 #include "src/ui/widgets.h"                 // drawCenter (error fallback)
+#include "src/ui/screen_settings.h"
 
 // The currently open book and where the user is looking. Produced by
 // `openBookByIndex()` below, fully torn down by `resetBookView()` on leaving
@@ -230,7 +231,7 @@ static void drawStatusBar(uint32_t startOffset) {
     int filled = (int)((startOffset * (uint32_t)w) / (uint32_t)total);
     if (filled < 0) filled = 0;
     if (filled > w) filled = w;
-    if (filled > 0) gfx.drawFastHLine(MARGIN_X, SCREEN_H - 1, filled, 1);
+    if (filled > 0) gfx.drawFastHLine(MARGIN_X, SCREEN_H - 1, filled, fgCol());
     return;
   }
 
@@ -257,8 +258,8 @@ static void drawStatusBar(uint32_t startOffset) {
     if (filled < 0) filled = 0;
     if (filled > w) filled = w;
 
-    gfx.drawRect(x0, yTop, w, barH, 1);
-    if (filled > 0) gfx.fillRect(x0 + 1, yTop + 1, max(0, filled - 2), barH - 2, 1);
+    gfx.drawRect(x0, yTop, w, barH, fgCol());
+    if (filled > 0) gfx.fillRect(x0 + 1, yTop + 1, max(0, filled - 2), barH - 2, fgCol());
   }
 }
 

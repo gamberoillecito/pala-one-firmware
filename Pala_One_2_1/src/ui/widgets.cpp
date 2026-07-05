@@ -3,6 +3,7 @@
 #include "src/hal/battery.h"
 #include "src/hal/display.h"
 #include "src/ui/font.h"
+#include "src/ui/screen_settings.h"
 
 static const int UI_HEADER_TOP = 6;
 static const int UI_HEADER_GAP = 6;
@@ -68,7 +69,7 @@ int drawSectionHeader(const char* title) {
 #endif
 
   int lineY = yTitle + 4;
-  gfx.drawFastHLine(MARGIN_X, lineY, SCREEN_W - (MARGIN_X * 2), 1);
+  gfx.drawFastHLine(MARGIN_X, lineY, SCREEN_W - (MARGIN_X * 2), fgCol());
 
   int contentTop = lineY + UI_HEADER_GAP + 11;
 
@@ -77,7 +78,7 @@ int drawSectionHeader(const char* title) {
 }
 
 void drawMenuRow(int yBaseline, const String& label, bool selected, int extraIndent) {
-  u8g2.setForegroundColor(1);
+  u8g2.setForegroundColor(fgCol());
   if (selected) Font::useBold();
   else          Font::useBody();
   u8g2.setCursor(UI_LIST_LEFT + extraIndent, yBaseline);

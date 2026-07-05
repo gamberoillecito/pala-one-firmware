@@ -3,6 +3,7 @@
 #include "src/config.h"        // TOAST_MS, MARGIN_X, SCREEN_H, SCREEN_W, STATUS_H
 #include "src/hal/display.h"   // u8g2 + gfx
 #include "src/ui/font.h"
+#include "src/ui/screen_settings.h"
 
 namespace Toast {
 
@@ -39,10 +40,10 @@ void draw() {
   if (!isActive()) return;
 
   const int yTop = SCREEN_H - STATUS_H;
-  gfx.fillRect(0, yTop, SCREEN_W, STATUS_H, 0);
+  gfx.fillRect(0, yTop, SCREEN_W, STATUS_H, bgCol());
 
   Font::useToast();   // Latin Extended — translated strings may carry accents
-  u8g2.setForegroundColor(1);  // guard: ensure black text regardless of prior state
+  u8g2.setForegroundColor(fgCol());  // guard: ensure black text regardless of prior state
   int textY = SCREEN_H - 1;
   u8g2.setCursor(MARGIN_X, textY);
   u8g2.print(s_msg.c_str());

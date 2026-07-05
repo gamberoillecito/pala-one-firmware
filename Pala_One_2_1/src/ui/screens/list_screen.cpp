@@ -27,7 +27,7 @@ void ListScreen::draw() {
 
   auto drawStrike = [&](int rowY, const String& s) {
     int w = u8g2.getUTF8Width(s.c_str());
-    gfx.drawFastHLine(UI_LIST_LEFT, rowY - strikeYOffset, w, 1);
+    gfx.drawFastHLine(UI_LIST_LEFT, rowY - strikeYOffset, w, fgCol());
   };
 
   drawScrollableList(y, g_list.count, g_list.selectedIndex,
